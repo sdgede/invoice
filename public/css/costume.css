@@ -1,0 +1,232 @@
+body {
+      font-family: "Open Sans", sans-serif;
+      
+    }
+   .sidebar {
+      width: 18rem;
+      min-height: 100vh;
+      border-right: 1px solid #e5e7eb;
+      background: #fff;
+    }
+   .sidebar .nav-link {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+   .sidebar .nav-link.active,
+   .sidebar .nav-link:hover {
+      color: #4f46e5;
+    }
+   .sidebar .nav-link .fa-fw {
+      width: 1.25em;
+    }
+   .sidebar .section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #9ca3af;
+      text-transform: uppercase;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+   .topbar {
+      background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
+      padding: 1.5rem 2rem;
+      color: white;
+    }
+   .topbar .form-control::placeholder {
+      color: rgba(255 255 255 / 0.7);
+    }
+   .card-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 0 15px rgb(255 255 255 / 0.3);
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+   .card-traffic .card-icon {
+      background-color: #ef4444;
+    }
+   .card-newusers .card-icon {
+      background-color: #f97316;
+    }
+   .card-sales .card-icon {
+      background-color: #facc15;
+    }
+   .card-performance .card-icon {
+      background-color: #38bdf8;
+    }
+   .card .trend-up {
+      color: #22c55e;
+    }
+   .card .trend-down {
+      color: #ef4444;
+    }
+   .btn-month {
+      background-color: #6366f1;
+      color: white;
+      border-radius: 0.375rem;
+      border: none;
+      padding: 0.375rem 1rem;
+      font-weight: 600;
+    }
+   .btn-week {
+      background-color: white;
+      color: #1e40af;
+      border-radius: 0.375rem;
+      border: none;
+      padding: 0.375rem 1rem;
+      font-weight: 600;
+    }
+   .card-gradient {
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+    }
+   .select-none {
+      user-select: none;
+    }
+   .select-text {
+      user-select: text;
+    }
+    
+
+    /* alert */
+
+        /* Fix warna success */
+    #toast-container > .toast-success,
+    #toast-container > .toast-success:hover {
+        background-color: #51A351 !important;
+        color: white !important;
+        opacity: 1 !important;
+    }
+
+    /* Fix warna error */
+    #toast-container > .toast-error,
+    #toast-container > .toast-error:hover {
+        background-color: #BD362F !important;
+        color: white !important;
+        opacity: 1 !important;
+    }
+
+    /* Optional: biar gak terlalu pucat pas hover */
+    #toast-container > .toast:hover {
+        opacity: 1 !important;
+    }
+
+.select2-container--default .select2-selection--single {
+    border: 1px solid #ced4da; 
+    border-radius: 0.375rem; 
+    height: calc(1.5em + 0.75rem + 2px); 
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem; 
+    background-color: #fff;
+}
+
+/* Panah dropdown */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: calc(1.5em + 0.75rem); /* Sesuaikan tinggi */
+    right: 0.75rem; /* Posisi panah */
+}
+
+/* Placeholder */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #6c757d; /* Warna placeholder Bootstrap */
+}
+
+/* Fokus */
+.select2-container--default .select2-selection--single:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+  
+
+.btn-option {
+  border: 1px black solid;
+}
+
+.dropdown2 {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown2 button {
+      padding: 10px 20px;
+      font-size: 13px;
+      /* background-color: #3498db; */
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .dropdown2 button.btn-opt1 {
+      background-color: #3498db;
+    }
+    
+    .dropdown2 button.btn-opt2 {
+      background-color: #6c757d;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translate(-50%, 10px) scale(0.95); 
+      background-color: transparent;
+      min-width: 400px;
+      padding: 15px;
+      border-radius: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1;
+    }
+
+    .dropdown2.open .dropdown-content {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    .dropdown-content .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .dropdown-content a {
+      padding: 10px 16px;
+      text-decoration: none;
+      color: #333;
+      background-color: #e0e0e0;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      width: 40%;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #cfcfcf;
+    }
+
+    .dropdown-content .dropdown-option1 {
+      background-color: #00e961;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .dropdown-content .dropdown-option2 {
+      background-color: #ff3700;
+      color: #fff;
+      cursor: pointer;
+    }
+
+  .canceled-row td {            /* seluruh sel dicoret */
+    text-decoration: line-through;
+    opacity: .65;               /* sedikit pudar */
+  }
+
+  
