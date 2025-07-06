@@ -7,6 +7,7 @@ use App\Models\PorductModel;
 use App\Models\InvoiceModel;
 use App\Models\InvoiceItemModel;
 use Config\Database;
+use App\Models\ProdukStokModel;
 
 class InvoiceController extends BaseController
 {
@@ -268,32 +269,50 @@ class InvoiceController extends BaseController
         exit;
     }
 
-    public function cancelInvoice($id)
-    {
-        $db = \Config\Database::connect();
-        $invoiceModel = new \App\Models\InvoiceModel();
 
-        $invoice = $invoiceModel->find($id);
-        if (!$invoice) {
-            return redirect()->back()
-                ->with('error', 'Invoice tidak ditemukan.');
-        }
 
-        $db->transStart();
+public function cancelInvoice($id)
+{
+    $db             = \Config\Database::connect();
+    $invoiceModel   = new \App\Models\InvoiceModel();
+    $itemModel      = new InvoiceItemModel();
+    $stokModel      = new ProdukStokModel();
 
-        $invoiceModel->cancelItem($id);
-
-        $db->transComplete();
-
-        if ($db->transStatus() === false) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Gagal membatalkan invoice. Silakan coba lagi.');
-        }
-
-        return redirect()->to('/cancelled')
-            ->with('success', 'Invoice berhasil dibatalkan.');
+    // 1. Validasi invoice
+    $invoice = $invoiceModel->find($id);
+    if (!$invoice) {
+        return redirect()->back()->with('error', 'Invoice tidak ditemukan.');
     }
+
+    // 2. Start transaksi
+    $db->transStart();
+
+    // 3. Kembalikan stok semua item
+    $items = $itemModel->where('invoice_id', $id)->findAll();
+    foreach ($items as $item) {
+        // PANGGIL reduceStock DENGAN QTY NEGATIF ⇒ stok +qty
+        $res = $stokModel->reduceStock($item['product_id'], -$item['quantity']);
+
+        if (!$res['success']) {
+            $db->transRollback();
+            return redirect()->back()
+                ->with('error', 'Gagal mengembalikan stok: '.$res['message']);
+        }
+    }
+
+    // 4. Update status invoice -> 4 (canceled)
+    $invoiceModel->cancelItem($id);
+
+    // 5. Commit
+    $db->transComplete();
+
+    if ($db->transStatus() === false) {
+        return redirect()->back()->with('error', 'Transaksi batal—DB error.');
+    }
+
+    return redirect()->to('/cancelled')->with('success', 'Invoice dibatalkan & stok kembali 👍');
+}
+
 
     public function settleInvoice($id)
     {

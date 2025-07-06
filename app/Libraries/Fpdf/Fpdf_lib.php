@@ -122,7 +122,10 @@ class Fpdf_lib extends \FPDF
         $this->Ln(10);
         $this->SetFont('Arial', '', 9);
         $this->Cell(90, 5, 'Approved by', 0, 0);
+        // Membuat teks dengan underline
+        $this->SetFont('Arial', 'UIB', 9);
         $this->Cell(90, 5, 'Barang yang sudah dibeli tidak dapat ditukar/dikembalikan', 0, 1, 'R');
+        $this->SetFont('Arial', '', 9); // Kembalikan font ke normal
 
         $this->Cell(90, 5, '', 0, 0);
         $this->Cell(90, 5, 'Pembayaran dapat ditransfer melalui bank Mandiri', 0, 1, 'R');
