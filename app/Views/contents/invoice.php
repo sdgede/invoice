@@ -254,6 +254,8 @@
     </div>
 </div>
 
+<script src="js/form.js"></script>
+
 <script>
     $(document).ready(function () {
         $('#searchStatus').select2({

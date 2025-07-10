@@ -1,3 +1,6 @@
+
+  <link rel="icon" href="<?= base_url('/img/logo.jpg') ?>" type="image/x-icon">
+
 <div class="d-flex h-100">
   <?= $this->include('layouts/header') ?>
 
